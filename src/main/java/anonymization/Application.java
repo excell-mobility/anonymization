@@ -43,7 +43,7 @@ public class Application {
     
     private ApiInfo apiInfo() {
         ApiInfo apiInfo = new ApiInfo(
-          "ExCELL Anonymization API",
+          "ExCELL Track Anonymization API",
           "This API provides anonymization for the ExCELL open data platform.",
           "Version 1.0",
           "Use only for testing",
