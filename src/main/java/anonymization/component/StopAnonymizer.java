@@ -15,16 +15,13 @@ import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.TransformException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import anonymization.model.GeoPoint;
 import anonymization.model.TrackingDate;
+import anonymization.model.GeoPoint;
 
 import com.google.common.collect.Lists;
 import com.vividsolutions.jts.geom.Coordinate;
-
-import exceptions.InternalAnonymizationErrorException;
 
 @Component
 public class StopAnonymizer {
@@ -61,12 +58,12 @@ public class StopAnonymizer {
 		this.minimumDataQuality = 6;
 	}
 	
-	public List<TrackingDate> anonymizeTracksJson(JSONObject jsonObject) throws InternalAnonymizationErrorException, JSONException, ParseException, NoSuchAuthorityCodeException, TransformException, FactoryException {
+	public List<TrackingDate> anonymizeTracksJson(JSONObject jsonObject) throws JSONException, ParseException, NoSuchAuthorityCodeException, TransformException, FactoryException {
 		
 		List<TrackingDate> trackingData = Lists.newLinkedList();
 		
 		if(!jsonObject.has("points")) {
-			throw new InternalAnonymizationErrorException("The json input data is invalid!");
+			throw new JSONException("The json input data is invalid!");
 		}
 		
 		JSONArray jsonArray = jsonObject.getJSONArray("points");

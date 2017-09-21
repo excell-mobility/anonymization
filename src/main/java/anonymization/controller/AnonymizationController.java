@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import exceptions.InternalAnonymizationErrorException;
 import anonymization.component.StopAnonymizer;
 import anonymization.model.TrackingDate;
 
@@ -44,12 +43,12 @@ public class AnonymizationController {
     @ResponseBody
     public List<TrackingDate> schedulingcare(
     		@ApiParam(name="jsonObjectInput", value="JSON object with tracking data points")
-    		@RequestBody String jsonObjectInput) throws InternalAnonymizationErrorException, JSONException, ParseException, NoSuchAuthorityCodeException, TransformException, FactoryException {
+    		@RequestBody String jsonObjectInput) throws JSONException, ParseException, NoSuchAuthorityCodeException, TransformException, FactoryException {
     		JSONObject jsonObject = new JSONObject(jsonObjectInput);
     		return anonymizer.anonymizeTracksJson(jsonObject);
     }
 	
-    @ExceptionHandler(value = InternalAnonymizationErrorException.class)
+    @ExceptionHandler(value = Exception.class)
     public BodyBuilder anonymizationError() {
     	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
     }
