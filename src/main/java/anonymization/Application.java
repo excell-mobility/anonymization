@@ -10,14 +10,14 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-import anonymization.component.AnonymizationService;
+import anonymization.component.StopAnonymizer;
 import anonymization.controller.AnonymizationController;
 
 @SpringBootApplication
 @EnableSwagger2
 @ComponentScan(basePackageClasses = {
 		AnonymizationController.class,
-		AnonymizationService.class
+		StopAnonymizer.class
 	})
 public class Application {
 
