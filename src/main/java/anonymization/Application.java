@@ -1,12 +1,18 @@
 package anonymization;
 
+import java.util.ArrayList;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
 
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
+import springfox.documentation.service.VendorExtension;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -30,8 +36,8 @@ public class Application {
         return new Docket(DocumentationType.SWAGGER_2)
           .groupName("excell-anonymization-api")
           .select()
-          	//.apis(RequestHandlerSelectors.any()) 
-          	//.paths(PathSelectors.any())
+          .apis(RequestHandlerSelectors.any()) 
+          .paths(PathSelectors.regex("/v1/anonymization"))
           .build()
           .genericModelSubstitutes(ResponseEntity.class)
           //.protocols(Sets.newHashSet("https"))
@@ -44,12 +50,17 @@ public class Application {
     private ApiInfo apiInfo() {
         ApiInfo apiInfo = new ApiInfo(
           "ExCELL Track Anonymization API",
-          "This API provides anonymization for the ExCELL open data platform.",
+          "This API provides anonymization for tracking data on the ExCELL open data platform.",
           "Version 1.0",
           "Use only for testing",
-          "spieper@beuth-hochschule",
+          new Contact(
+        		  "Felix Kunde, Stephan Pieper",
+        		  "https://projekt.beuth-hochschule.de/magda/poeple",
+        		  "spieper@beuth-hochschule"),
           "Apache 2",
-          "http://www.apache.org/licenses/LICENSE-2.0");
+          "http://www.apache.org/licenses/LICENSE-2.0",
+          new ArrayList<VendorExtension>());
         return apiInfo;
     }
+   
 }
