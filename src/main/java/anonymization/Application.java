@@ -50,10 +50,10 @@ public class Application {
     private ApiInfo apiInfo() {
         ApiInfo apiInfo = new ApiInfo(
           "ExCELL Track Anonymization API",
-          "This API provides anonymization for tracking data on the ExCELL open data platform. "
-          + "The main purpose of this API is the anonymization of privacy critical GPS tracks. "
-          + "Therefore, the API anonymizes the starts, ends and stopps of the GPS tracks to ensure privacy. "
-          + "These parts of the GPS tracks can expose sensible personal information such as home addresses or working places.",
+          "Diese API stellt Anonymisierung für Tracking Daten auf der ExCELL Open Data Plattform zur Verfügung. "
+          + "Der Hauptzweck dieser API ist die Anonymisierung von datenschutzrechtlich kritischen GPS Tracks. "
+          + "Infolgedessen anonymisiert die API Startpunkte, Endpunkte und Zwischenhaltestellen der GPS Tracking Daten, um Datenschutz sicherzustellen. "
+          + "Diese Teile der GPS Tracking Daten können sonst sensible persönliche Informationen, wie Heimatadressen oder Arbeitsplätze offenbaren.",
           "Version 1.0",
           "Use only for testing",
           new Contact(
