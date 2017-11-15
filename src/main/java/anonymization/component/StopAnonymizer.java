@@ -92,11 +92,13 @@ public class StopAnonymizer {
 		if(minimumDataQuality * disguise_distance < approximate_Distance) {
 			sanitizedList = sanitizeStartEndTracks(trackingData, blur_factor_start, 
 					blur_factor_end, disguise_distance);
-			System.out.println("Sanitized list size after removing start and end points: " + sanitizedList.size());
 		}
 		
 		if(sanitizedList == null) {
 			System.out.println("Could not sanitize start and end of the track");
+			return Lists.newLinkedList();
+		} else {
+			System.out.println("Sanitized list size after removing start and end points: " + sanitizedList.size());
 		}
 		double calculateDistance = calculateDistance(sanitizedList);
 		System.out.println("Distance after sanitization: " + calculateDistance);
