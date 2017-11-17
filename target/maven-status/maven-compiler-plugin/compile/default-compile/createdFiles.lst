@@ -1,6 +1,5 @@
-anonymization\controller\AnonymizationController.class
-anonymization\model\TrackingDate.class
-anonymization\component\AnonymizationService.class
 anonymization\model\GeoPoint.class
 anonymization\Application.class
+anonymization\controller\AnonymizationController.class
 anonymization\component\StopAnonymizer.class
+anonymization\model\TrackingDate.class
