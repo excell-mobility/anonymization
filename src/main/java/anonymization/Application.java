@@ -50,7 +50,7 @@ public class Application {
           .paths(PathSelectors.regex("/v1/anonymization"))
           .build()
           .genericModelSubstitutes(ResponseEntity.class)
-          .protocols(Sets.newHashSet("https", "http"))
+          .protocols(Sets.newHashSet("https"))
 //          .host("localhost:45555")
 //          .host("141.64.5.234/excell-anonymization-api")
           .host("dlr-integration.minglabs.com/api/v1/service-request/anonymizationservice")
