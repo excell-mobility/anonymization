@@ -101,7 +101,7 @@ public class Application {
           + "This API takes individual GPS tracks and removes properties which are critical in terms of user privacy. "
           + "It is also used internally by the ExCELL Tracking Service. "
           + "Start and end points as well as intermediate stops are edited to avoid tracing back personal information such as addresses.\n",
-          "Version 1.0",
+          "1.0",
           "Use only for testing",
           new Contact(
         		  "Beuth Hochschule für Technik Berlin - Labor für Rechner- und Informationssysteme - MAGDa Gruppe",
