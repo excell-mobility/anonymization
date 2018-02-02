@@ -2,6 +2,28 @@
 
 The Anonymization API takes individual GPS tracks and removes properties which are critical in terms of user privacy. It is also used internally by the ExCELL Tracking Service. Start and end points as well as intermediate stops are edited to avoid tracing back personal information such as addresses.
 
+## Setup
+
+This web service comes as a [SpringBoot](https://projects.spring.io/spring-boot/) application so it's very easy to test it on your local machine. If you run the service from inside a Java IDE a Tomcat server will be launched and you can access the service through a browser via localhost:45555.
+
+### Build it
+
+The project is using [Maven](https://maven.apache.org/) as a build tool and for managing the software dependencies. So in order to build the software you should install Maven on your machine. To create an executable JAR file for your local machine open you favourite shell environment and run:
+
+<pre>mvn clean package</pre>
+
+This creates a JAR file called `anonymization-0.0.1-SNAPSHOT.jar`. You can change the name in the pom.xml file.
+
+### Run it
+
+On your local machine run the JAR with:
+
+<pre>java -jar anonymization-0.0.1-SNAPSHOT.jar</pre>
+
+You might also want to change the server port
+
+<pre>java -jar anonymization-0.0.1-SNAPSHOT.jar --server.port=45555</pre>
+
 ## API Doc
 
 This projects provides a [Swagger](https://swagger.io/) interface to support the Open API initiative. The Java library [Springfox](http://springfox.github.io/springfox/) is used to automatically create the swagger UI configuration from annotations in the Java Spring code.
