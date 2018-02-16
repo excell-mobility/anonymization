@@ -3,6 +3,8 @@ package anonymization;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +24,7 @@ import springfox.documentation.service.SecurityReference;
 import springfox.documentation.service.VendorExtension;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
+import springfox.documentation.spring.web.paths.RelativePathProvider;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.web.ApiKeyVehicle;
 import springfox.documentation.swagger.web.SecurityConfiguration;
@@ -42,7 +45,7 @@ public class Application {
     }
     
     @Bean
-    public Docket geocodingApi() { 
+    public Docket geocodingApi(ServletContext servletContext) { 
         return new Docket(DocumentationType.SWAGGER_2)
           .groupName("excell-anonymization-api")
           .select()
@@ -53,11 +56,16 @@ public class Application {
           .protocols(Sets.newHashSet("https"))
 //          .host("localhost:45555")
 //          .host("141.64.5.234/excell-anonymization-api")
-          .host("dlr-integration.minglabs.com/api/v1/service-request/anonymizationservice")
+          .host("dlr-integration.minglabs.com")
           .securitySchemes(Lists.newArrayList(apiKey()))
           .securityContexts(Lists.newArrayList(securityContext()))
           .apiInfo(apiInfo())
-          ;
+          .pathProvider(new RelativePathProvider(servletContext) {
+              @Override
+              public String getApplicationBasePath() {
+                  return "/api/v1/service-request/anonymizationservice";
+              }
+          });
     }
     
 	private ApiKey apiKey() {
@@ -73,10 +81,7 @@ public class Application {
 
     private List<SecurityReference> defaultAuth() {
     	List<SecurityReference> ls = new ArrayList<>();
-    	AuthorizationScope authorizationScope
-    		= new AuthorizationScope("global", "accessEverything");
-    	AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-    	authorizationScopes[0] = authorizationScope;
+    	AuthorizationScope[] authorizationScopes = new AuthorizationScope[0];
     	SecurityReference s = new SecurityReference("api_key", authorizationScopes);
     	ls.add(s);
     	return ls;
@@ -90,14 +95,16 @@ public class Application {
     private ApiInfo apiInfo() {
         ApiInfo apiInfo = new ApiInfo(
           "ExCELL Track Anonymization API",
-          "Diese API stellt Anonymisierung für Tracking Daten auf der ExCELL Open Data Plattform zur Verfügung. "
-          + "Der Hauptzweck dieser API ist die Anonymisierung von datenschutzrechtlich kritischen GPS Tracks. "
-          + "Infolgedessen anonymisiert die API Startpunkte, Endpunkte und Zwischenhaltestellen der GPS Tracking Daten, um Datenschutz sicherzustellen. "
-          + "Diese Teile der GPS Tracking Daten können sonst sensible persönliche Informationen, wie Heimatadressen oder Arbeitsplätze offenbaren.",
-          "Version 1.0",
+          "Diese API ist dafür gedacht datenschutzrechtlich kritische GPS Daten zu anonymisieren. "
+          + "Sie wird u.a. intern im Tracking Service verwendet. Der Dienst anonymisiert die Start- und Endpunkte sowie Zwischenhaltestellen der GPS Tracks, "
+          + "um keine Rückschlüsse auf persönliche Informationen wie Adressen zu ermöglichen.\n\n"
+          + "This API takes individual GPS tracks and removes properties which are critical in terms of user privacy. "
+          + "It is also used internally by the ExCELL Tracking Service. "
+          + "Start and end points as well as intermediate stops are edited to avoid tracing back personal information such as addresses.\n",
+          "1.0",
           "Use only for testing",
           new Contact(
-        		  "Felix Kunde, Stephan Pieper",
+        		  "Beuth Hochschule für Technik Berlin - Labor für Rechner- und Informationssysteme - MAGDa Gruppe",
         		  "https://projekt.beuth-hochschule.de/magda/poeple",
         		  "spieper@beuth-hochschule"),
           "Apache 2",
