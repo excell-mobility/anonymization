@@ -35,6 +35,11 @@ An online version of the scheduling API is available on the ExCELL Developer Por
 
 * Stephan Pieper (BHS)
 
+
+## Acknowledgement
+The Anonymization Service has been realized within the ExCELL project funded by the Federal Ministry for Economic Affairs and Energy (BMWi) and German Aerospace Center (DLR) - agreement 01MD15001B.
+
+
 ## Contact
 
 * spieper [at] beuth-hochschule.de
