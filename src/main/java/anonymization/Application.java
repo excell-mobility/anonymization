@@ -98,7 +98,8 @@ public class Application {
           + "um keine Rückschlüsse auf persönliche Informationen wie Adressen zu ermöglichen.\n\n"
           + "This API takes individual GPS tracks and removes properties which are critical in terms of user privacy. "
           + "It is also used internally by the ExCELL Tracking Service. "
-          + "Start and end points as well as intermediate stops are edited to avoid tracing back personal information such as addresses.\n",
+          + "Start and end points as well as intermediate stops are edited to avoid tracing back personal information such as addresses.\n\n"
+          + "Dummy Input: https://projekt.beuth-hochschule.de/fileadmin/projekt/magda/Presentations/Testdaten_Anonymization.json",
           "1.0",
           "Use only for testing",
           new Contact(
